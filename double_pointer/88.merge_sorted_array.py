@@ -9,6 +9,7 @@ class Solution(object):
         p1 = m - 1
         p2 = n - 1
         # set pointer for nums1
+        #这里就是说我在num1后面从最大值开始往前加，和977.x的平方根那道题有点像
         p = m + n - 1
         
         # while there are still elements to compare
