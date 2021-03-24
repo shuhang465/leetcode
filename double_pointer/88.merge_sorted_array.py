@@ -21,5 +21,5 @@ class Solution(object):
                 p1 -= 1
             p -= 1
         
-        #add missing elements from nums2
+        #add missing elements from nums2，解决p2或者p1有一个为空的情况
         nums1[:p2 + 1] = nums2[:p2 + 1]
