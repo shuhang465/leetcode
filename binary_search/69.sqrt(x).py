@@ -1,12 +1,12 @@
 class Solution:
     def mySqrt(self, x: int) -> int:
         left, right = 0, x
-        while left < right:
+        while left <= right:
             mid = left + (right-left)//2
             if mid * mid < x:
                 left = mid + 1
             else:
-                right = mid
+                right = mid -1
         if left * left > x:
             return left-1
         else:
