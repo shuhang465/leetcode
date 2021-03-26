@@ -11,7 +11,4 @@ class Solution:
                 left = mid + 1
             else:
                 right = mid -1
-        if (left+1)*left//2 > n:
-            return left - 1
-        else:
-            return left
+        return right
