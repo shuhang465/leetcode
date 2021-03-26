@@ -4,12 +4,12 @@ class Solution:
         right = num
         if num == 1:
             return True
-        while left < right:
+        while left <= right:
             mid = left + (right-left)//2
             if mid * mid == num:
                 return True
             elif mid * mid < num:
                 left = mid + 1
             else:
-                right = mid
+                right = mid - 1
         return False
