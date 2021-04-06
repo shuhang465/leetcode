@@ -14,7 +14,7 @@ class Solution:
             p2=dfs(root.right)
             #更新坡度差
             self.res+= abs(p1-p2)
-            #返回坡度和
+            #返回坡度和，这里是为了后面父节点计算差的绝对值
             return p1+p2+root.val
         dfs(root)
         return self.res
