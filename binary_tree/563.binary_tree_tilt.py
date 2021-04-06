@@ -12,7 +12,9 @@ class Solution:
             if not root:return 0
             p1= dfs(root.left)
             p2=dfs(root.right)
+            #更新坡度差
             self.res+= abs(p1-p2)
+            #返回坡度和
             return p1+p2+root.val
         dfs(root)
         return self.res
