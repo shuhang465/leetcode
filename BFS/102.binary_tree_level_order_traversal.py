@@ -4,6 +4,8 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+#二叉树的层序遍历，返回按层遍历得到的节点值
 class Solution:
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         if not root:
