@@ -4,12 +4,14 @@ class Solution:
         if len(nums) < 3:
             return ans
         nums.sort()
-        # 如果最小的三个数已经大于 0，退出程序
-        if nums[0] + nums[1] + nums[2] > 0:
-            return []
-        elif nums[-1] + nums[-2] + nums[-3] < 0:
-            return []
         for i in range(len(nums)-2):
+            # 如果最小的三个数已经大于 0，退出程序
+            if nums[i] + nums[i+1] + nums[i+2] > 0:
+                break
+            # 如果最大的三个数还小于0，continue
+            if nums[i] + nums[-1] + nums[-2] < 0:
+                continue
+            # 如果当前这个数等于前一个数， continue
             if i > 0 and nums[i] == nums[i-1]:
                 continue
             # 双指针
@@ -35,3 +37,4 @@ class Solution:
                 else:
                     right -= 1
         return ans
+
