@@ -6,6 +6,7 @@ class Solution:
         nums.sort()
         length = len(nums)
         for i in range(length):
+            #这里的特例和3sum不一样哦
             if nums[i] > 0 and target < 0:
                 break
             if i > 0 and nums[i] == nums[i-1]:
@@ -14,6 +15,7 @@ class Solution:
                 if j > i+1 and nums[j] == nums[j-1]:
                     continue
                 two_sum = nums[i] + nums[j]
+                #和上面一样
                 if two_sum > 0 and target < 0:
                     break
                 left, right = j + 1, length - 1
