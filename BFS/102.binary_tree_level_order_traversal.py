@@ -12,14 +12,19 @@ class Solution:
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         if not root:
             return []
+        #res存的是最终结果，[[一层],[二层],[...]]
         res = []
+	    #从collections里引入队列deque
         from collections import deque
         queue = deque()
+	    #将跟节点放入队列中，不断遍历队列
         queue.append(root)
         while queue:
+            #获取当前队列的长度，这个长度相当于这一层节点的个数
             size = len(queue)
             #注意tmp变量的位置是写在while里面
             tmp = []
+            #对这一层的每个节点进行遍历，把每个节点拿出来存进list,然后把左右节点再放队列
             for _ in range(size):
                 node = queue.popleft()
                 tmp.append(node.val)
@@ -29,7 +34,3 @@ class Solution:
                     queue.append(node.right)
             res.append(tmp)
         return res
-
-
-			
-
