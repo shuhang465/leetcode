@@ -6,6 +6,8 @@
 #         self.right = right
 
 #二叉树的层序遍历，返回按层遍历得到的节点值
+#层序遍历和BFS要求的输入结果是不同的，层序遍历要求区分每一层就返回一个二维数组，而BFS的遍历结果是一个一维数组，无法区分每一层
+
 class Solution:
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         if not root:
