@@ -1,9 +1,16 @@
+# 三合一。描述如何只用一个数组来实现三个栈。
+# 你应该实现push(stackNum, value)、pop(stackNum)、isEmpty(stackNum)、peek(stackNum)方法。stackNum表示栈下标，value表示压入的值。
+# 构造函数会传入一个stackSize参数，代表每个栈的大小。
+
 #这个题就是说一个数组里有三个栈，比如1到5是一个栈，5到10是一个栈
 #这个题的做法是让栈顶在左侧，就是顶000顶000顶000
 class TripleInOne:
     def __init__(self, stackSize: int):
         self.stackSize = stackSize
         self.stack = [0] * 3 * stackSize
+#         dict1.fromkeys((1,2,3),'number')
+#         {1: 'number', 2: 'number', 3: 'number'}
+        #top用来判断是否满栈
         self.top = dict.fromkeys(range(3), 0)
 
     def push(self, stackNum: int, value: int) -> None:
