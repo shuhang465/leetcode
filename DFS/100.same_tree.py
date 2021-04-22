@@ -4,8 +4,11 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+#判断两棵树是否相同
 class Solution:
     def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+#两棵树都空则相同，有一棵空一棵不空或者根节点值不一样则不相同，然后对左1左2右1右2子树进行判断
         if not p and not q:
             return True
         elif not p or not q:
