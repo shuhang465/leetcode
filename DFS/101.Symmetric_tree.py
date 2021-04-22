@@ -1,3 +1,5 @@
+#判断是否是对称树
+#就是左子树的左是否等有右子树的右，左子树的右是否等于右子树的左
 class Solution(object):
 	def isSymmetric(self, root):
 		"""
