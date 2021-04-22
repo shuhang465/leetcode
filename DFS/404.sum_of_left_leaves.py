@@ -4,7 +4,7 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-
+# 计算给定二叉树的所有左叶子之和。
 class Solution:
     def sumOfLeftLeaves(self, root: TreeNode) -> int:
         #判断是否为叶子结点
