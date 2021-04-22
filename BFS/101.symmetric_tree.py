@@ -1,3 +1,4 @@
+# 给定一个二叉树，检查它是否是镜像对称的。
 class Solution(object):
 	def isSymmetric(self, root):
 		"""
