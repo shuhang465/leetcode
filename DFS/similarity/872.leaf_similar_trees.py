@@ -21,6 +21,7 @@ class Solution(object):
         #终止条件就是叶子，然后把叶子的值存起来
         if not root.left and not root.right:
             res.append(root.val)
+        #然后递归遍历左右子树
         if root.left:
             self.dfs(root.left, res)
         if root.right:
