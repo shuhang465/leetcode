@@ -19,5 +19,5 @@ class Solution(object):
         #到叶子结点才判断
         if not root.left and not root.right:
             return sum == root.val
-        #sum一直在递归减少
+        #递归左右，sum一直在递归减少
         return self.hasPathSum(root.left, sum - root.val) or self.hasPathSum(root.right, sum - root.val)
