@@ -1,3 +1,4 @@
+# 实现一个MyQueue类，该类用两个栈来实现一个队列。
 class MyQueue:
 #队列和栈其实都是list
     def __init__(self):
