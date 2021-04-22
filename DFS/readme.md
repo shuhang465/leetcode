@@ -1,1 +1,2 @@
-
+similarity是判断两棵树相似性的
+path是遍历路径的
