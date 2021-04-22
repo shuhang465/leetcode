@@ -1,5 +1,5 @@
 class MyQueue:
-
+#队列和栈其实都是list
     def __init__(self):
         self.stack1 = []
         self.stack2 = []
@@ -13,6 +13,7 @@ class MyQueue:
         if not self.stack2:
             while self.stack1:
                 self.stack2.append(self.stack1.pop())
+        #pop()是list的属性，不是说stack有这个性质
         return self.stack2.pop()
 
 
