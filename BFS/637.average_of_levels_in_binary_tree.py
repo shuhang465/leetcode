@@ -4,7 +4,7 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-
+# 给定一个非空二叉树, 返回一个由每层节点平均值组成的数组。
 class Solution:
     def averageOfLevels(self, root: TreeNode) -> List[float]:
         # 题目数组非空，
