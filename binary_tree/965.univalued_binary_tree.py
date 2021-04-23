@@ -5,7 +5,9 @@
 #         self.left = None
 #         self.right = None
 
+# 如果二叉树每个节点都具有相同的值，那么该二叉树就是单值二叉树。
 
+# 只有给定的树是单值二叉树时，才返回 true；否则返回 false。
 class Solution:
     def isUnivalTree(self, root: TreeNode) -> bool:
         # 遍历就完事了
