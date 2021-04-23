@@ -4,7 +4,10 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+# 给定一棵二叉树，你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点路径长度中的最大值。这条路径可能穿过也可能不穿过根结点。
 
+
+#直径最长不一定要经过根结点，直径等于某根节点左侧最深长度加右侧最深长度。
 class Solution:
     def diameterOfBinaryTree(self, root: TreeNode) -> int:
         self.ans = 1
