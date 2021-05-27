@@ -25,33 +25,37 @@ class Solution:
 #最坏的空间复杂度是O(n),最坏情况要划分n次，每层需要O(1)的空间，所以一共需O(n)的空间复杂度。
 #但是数据量大的时候还是选择堆排序，因为快速排序需要修改原数组，如果原数组不能修改的话还要拷贝一份数组，空间复杂度就上去了
 #而且快速排序需要保存所有的数据，当数据量非常大导致内存放不下的时候并不适合，而堆是来一个处理一个，不需要保存数据。
-class Solution:
-    def partition(self, nums, l, r):
-        pivot = nums[r]
-        i = l - 1
-        for j in range(l, r):
-            if nums[j] <= pivot:
-                i += 1
-                nums[i], nums[j] = nums[j], nums[i]
-        nums[i + 1], nums[r] = nums[r], nums[i + 1]
-        return i + 1
-
-    def randomized_partition(self, nums, l, r):
-        i = random.randint(l, r)
-        nums[r], nums[i] = nums[i], nums[r]
-        return self.partition(nums, l, r)
-
-    def randomized_selected(self, arr, l, r, k):
-        pos = self.randomized_partition(arr, l, r)
-        num = pos - l + 1
-        if k < num:
-            self.randomized_selected(arr, l, pos - 1, k)
-        elif k > num:
-            self.randomized_selected(arr, pos + 1, r, k - num)
-
-    def getLeastNumbers(self, arr: List[int], k: int) -> List[int]:
-        if k == 0:
-            return list()
-        self.randomized_selected(arr, 0, len(arr) - 1, k)
+class Solution(object):
+    def getLeastNumbers(self, arr, k):
+        """
+        :type arr: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        if k > len(arr) or k <= 0:
+            return [] 
+        start = 0
+        end = len(arr) - 1
+        index = self.quickSort(arr, start, end)
+        while index != k-1:
+            if index > k-1:
+                end = index - 1
+                index = self.quickSort(arr, start, end)
+            if index < k-1:
+                start = index + 1
+                index = self.quickSort(arr, start, end)
         return arr[:k]
 
+    def quickSort(self, arr, start, end):
+        low = start
+        high = end
+        temp = arr[start]
+        while low < high:
+            while low < high and arr[high] >= temp:
+                high -= 1
+            arr[low] = arr[high]
+            while low <high and arr[low] < temp:
+                low += 1
+            arr[high] = arr[low]
+        arr[low] = temp
+        return low
