@@ -28,3 +28,6 @@ class Solution:
                 heapq.heappush(heap, (lists[idx].val, idx))
                 lists[idx] = lists[idx].next
         return dummy.next
+# 时间复杂度：O(NlogK)，K是原始链表的数量，N是所有链表中的节点总数。堆操作是O(logK)，需操作N次。
+# 空间复杂度：O(N+K)，N是节点总数，K是堆大小。
+
