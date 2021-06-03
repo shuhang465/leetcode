@@ -5,7 +5,7 @@ class Solution:
         right = len(numbers) - 1
         while left < right:
             mid = left + (right - left)//2
-            #第一个要注意的地方：num(mid)和num(right)比，[7,8,9,0,1,2,3],0<3,所以最小值在mid左面[],但是[7,8,9,1,2],mid比7和2都大，所以无法判断最小值在哪里，所以mid要和右面的比
+            #第一个要注意的地方：num(mid)和num(right)比，[7,0,1,2,3],mid=1<left=7所以无法判断最小值在哪里，所以mid要和右面的比
             if numbers[mid] > numbers[right]:
                 left = mid + 1
             elif numbers[mid] < numbers[right]:
