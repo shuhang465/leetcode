@@ -12,7 +12,7 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-
+# 从根节点出发开始寻找，不断向其较高的那部分子树前进，直到左右两边高度相同，该节点即为所求
 class Solution:
     def deep(self, tree): #计算树的深度
         if tree == None:
