@@ -17,6 +17,7 @@ class Solution:
                 # 从左向右找到大的
                 while l < r and nums[l] <= pivot:
                     l += 1
+                #现在找到右面小的左面大的，这样又符合左小右大了
                 nums[l], nums[r] = nums[r], nums[l]
             # 确定基准点的位置
             nums[start], nums[l] = nums[l], nums[start]
