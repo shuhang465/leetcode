@@ -20,3 +20,16 @@ class Solution:
         return nums[:k]
 
 
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        count = collections.Counter(nums)
+        nums = [(val,key) for key, val in count.items()]
+        heap = nums[:k]
+        heapq.heapify(heap)
+        #建的是小根堆
+        for i in range(k, len(nums)):
+            if  heap[0][0] < nums[i][0]:
+                heapq.heappop(heap)
+                heapq.heappush(heap, nums[i])
+        return [item[1] for item in heap]
+        
