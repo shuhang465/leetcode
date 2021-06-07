@@ -21,41 +21,30 @@ class Solution:
         ans = [-x for x in hp]
         return ans
 #3.快速排序，时间复杂度期望O(n), 最坏情况下是O(n2)，最坏时每次的划分点都是最大值或者最小值，一共需要划分n-1次，而每一次划分需要线性的时间复杂度，所以是o(n2)
-#空间复杂度的期望是O(logn),递归调用的期望深度是O(logn),每层需要的深度是O(1),只有常数个变量
-#最坏的空间复杂度是O(n),最坏情况要划分n次，每层需要O(1)的空间，所以一共需O(n)的空间复杂度。
+# 如果某次哨兵划分后 基准数正好是第 k+1 小的数字 ，那么此时基准数左边的所有数字便是题目所求的 最小的 k 个数 
+# 哨兵划分：
+# 划分完毕后，基准数为 arr[i] ，左/右子数组区间分别为 [l, i - 1],[i + 1, r]；
+# 递归或返回：
+# 若 k < i ，代表第 k + 1 小的数字在左子数组中，则递归左子数组；
+# 若 k > i ，代表第 k + 1 小的数字在右子数组中，则递归右子数组；
+# 若 k = i，代表此时 arr[k] 即为第 k + 1小的数字，则直接返回数组前k个数字即可；
+
 #但是数据量大的时候还是选择堆排序，因为快速排序需要修改原数组，如果原数组不能修改的话还要拷贝一份数组，空间复杂度就上去了
 #而且快速排序需要保存所有的数据，当数据量非常大导致内存放不下的时候并不适合，而堆是来一个处理一个，不需要保存数据。
-class Solution(object):
-    def getLeastNumbers(self, arr, k):
-        """
-        :type arr: List[int]
-        :type k: int
-        :rtype: List[int]
-        """
-        if k > len(arr) or k <= 0:
-            return [] 
-        start = 0
-        end = len(arr) - 1
-        index = self.quickSort(arr, start, end)
-        while index != k-1:
-            if index > k-1:
-                end = index - 1
-                index = self.quickSort(arr, start, end)
-            if index < k-1:
-                start = index + 1
-                index = self.quickSort(arr, start, end)
-        return arr[:k]
+class Solution:
+    def getLeastNumbers(self, arr: List[int], k: int) -> List[int]:
+        if k >= len(arr): return arr
+        def quick_sort(start, end):
+            l, r = start, end
+            pivot = arr[start]
+            while l < r:
+                while l < r and arr[r] >= pivot: r -= 1
+                while l < r and arr[l] <= pivot: l += 1
+                arr[l], arr[r] = arr[r], arr[l]
+            arr[start], arr[l] = arr[l], arr[start]
+            #上面就是正常的快速排序，这里是递归
+            if k < l: return quick_sort(start, l-1)
+            if k > l: return quick_sort(l+1, end)
+            return arr[:k]
+        return quick_sort(0, len(arr)-1)
 
-    def quickSort(self, arr, start, end):
-        low = start
-        high = end
-        temp = arr[start]
-        while low < high:
-            while low < high and arr[high] >= temp:
-                high -= 1
-            arr[low] = arr[high]
-            while low <high and arr[low] < temp:
-                low += 1
-            arr[high] = arr[low]
-        arr[low] = temp
-        return low
