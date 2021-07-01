@@ -1,40 +1,51 @@
-class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
-        ans = []
-        if len(nums) < 3:
-            return ans
-        nums.sort()
-        for i in range(len(nums)-2):
-            # 如果最小的三个数已经大于 0，退出程序
-            if nums[i] + nums[i+1] + nums[i+2] > 0:
-                break
-            # 如果最大的三个数还小于0，continue
-            if nums[i] + nums[-1] + nums[-2] < 0:
-                continue
-            # 如果当前这个数等于前一个数， continue
-            if i > 0 and nums[i] == nums[i-1]:
-                continue
-            # 双指针
-            left, right = i + 1, len(nums) - 1
-            while left < right:
-                three_sum = nums[i] + nums[left] + nums[right]
-                # 如果三数之和等于 0，
-                if three_sum == 0:
-                    ans.append([nums[i], nums[left], nums[right]])
-                    # 去除重复的左边元素
-                    while left < right and nums[left] == nums[left+1]:
-                        left += 1
-                    # 去除重复的右边元素
-                    while left < right and nums[right] == nums[right-1]:
-                        right -= 1
-                    # 更新 left， right的值
-                    left += 1
-                    right -= 1
-                # 如果三数之和小于 0
-                elif three_sum < 0:
-                    left += 1
-                # 如果三数之和大于 0
-                else:
-                    right -= 1
-        return ans
-
+#两边往中间夹，时间复杂度O(N2),空间复杂度O(1)
+def threeSum(self, nums):
+    if len(nums) < 3:
+        return []
+    nums.sort()
+    res = set()
+    for i, v in enumerate(nums):
+        if i > len(nums)-1: break
+        j = i + 1
+        k = len(nums) - 1
+        while j < k:
+            if nums[i] + nums[j] + nums[k] > 0:
+                k -= 1
+            elif nums[i] + nums[j] + nums[k] < 0:
+                j += 1
+            else:
+                res.add((nums[i], nums[j], nums[k]))
+                #去除重复元素
+                while j < k and nums[j] == nums[j+1]:
+                        j += 1
+                while j < k and nums[k] == nums[k-1]:
+                        k -= 1
+                j += 1
+                k -= 1
+    return map(list, res) 
+#最暴利的解法是每个词都循环一遍，时间复杂度为O(n3),空间复杂度O(1)
+def threesum(self, nums):
+    if len(nums) < 3:
+        return []
+    nums.sort()
+    res = set()
+    for i in range(0, len(nums)):
+        for j in range(i+1, len(nums)):
+            for k in range(j+1, len(nums)):
+                if nums[i] + nums[j] + nums[k] == 0:
+                    res.add((nums[i], nums[j], nums[k]))
+    return map(list, res)
+#选定两个值，然后用target减去这两个数即所找的数，因此可以用哈希表节省一层循环，时间复杂度O(N2),空间复杂度O(N)
+def threeSum(self, nums):
+    if len(nums) < 3:
+        return []
+    d = {}
+    res = set()
+    for i , v in enumerate(nums):
+        d[v] = 1
+    for i in range(0, len(nums)):
+        for j in range(i+1, len(nums)):
+            if -nums[i]-nums[j] in d:
+                res.add(tuple(sorted([nums[i], nums[j],-nums[i]-nums[j])))
+    return map(list, res)
+ 
