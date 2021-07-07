@@ -12,19 +12,16 @@
 
 
 class Solution:
-    def hasCycle(self, head: ListNode) -> bool:
+    def hasCycle(self, head):
         if not head or not head.next:
             return False
-        
-        slow = head
-        fast = head.next
-
-        while slow != fast:
-            if not fast or not fast.next:
-                return False
+        slow = fast = head
+        while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-        return True
+            if slow == fast:
+                return True
+        return False
 # 本方法需要读者对「Floyd 判圈算法」（又称龟兔赛跑算法）有所了解。
 
 # 假想「乌龟」和「兔子」在链表上移动，「兔子」跑得快，「乌龟」跑得慢。当「乌龟」和「兔子」从链表上的同一个节点开始移动时，如果该链表中没有环，那么「兔子」将一直处于「乌龟」的前方；如果该链表中有环，那么「兔子」会先于「乌龟」进入环，并且一直在环内移动。等到「乌龟」进入环时，由于「兔子」的速度快，它一定会在某个时刻与乌龟相遇，即套了「乌龟」若干圈。
