@@ -14,3 +14,4 @@ class Solution:
               res += sum_count[pre_sum_cur - k]
           sum_count[pre_sum_cur] += 1
       return res
+#时间复杂度O(n),空间复杂度O(n)
