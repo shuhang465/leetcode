@@ -5,19 +5,18 @@ class Solution:
         def quick_sort(start, end):
             # 只剩一个元素时，不用再进行排序
             if start >= end: return
-            # 任意找到个基准放到前面
+            # 任意找到个基准放到前面,如果不随机选的话会超出时间限制
             idx = random.randint(start, end)
             nums[start], nums[idx] = nums[idx], nums[start]
             pivot = nums[start]
             l, r = start, end
             while l < r:
-                # 从右向左找到小的
+                # 从右向左找到小的，要先从右往左再从左往右要不会出错
                 while l < r and nums[r] >= pivot:
                     r -= 1
                 # 从左向右找到大的
                 while l < r and nums[l] <= pivot:
                     l += 1
-                #现在找到右面小的左面大的，这样又符合左小右大了
                 nums[l], nums[r] = nums[r], nums[l]
             # 确定基准点的位置
             nums[start], nums[l] = nums[l], nums[start]
@@ -26,4 +25,5 @@ class Solution:
         
         quick_sort(0, len(nums) - 1)
         return nums
-时间复杂度最好是每次都等分O(nlogn),最差是O(n2)
+
+# 时间复杂度最好是每次都等分O(nlogn),最差是O(n2)
