@@ -43,9 +43,10 @@ class Solution:
                 while l < r and arr[l] <= pivot: l += 1
                 arr[l], arr[r] = arr[r], arr[l]
             arr[start], arr[l] = arr[l], arr[start]
-            #上面就是正常的快速排序，这里是递归
+            #上面就是正常的快速排序，这里是递归，当k<l的时候排序左边就行了，右边就不用管了，否则正常的快速排序左右两边都要排序的
             if k < l: return quick_sort(start, l-1)
             if k > l: return quick_sort(l+1, end)
+            #就是快速排序是在原数组上进行操作的，所以就直接返回到k的位置的数组就可以了
             return arr[:k]
         return quick_sort(0, len(arr)-1)
 
