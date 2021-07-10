@@ -38,6 +38,7 @@ class Solution:
             l, r = start, end
             pivot = arr[start]
             while l < r:
+                #这里一定要先从右往左，再从左往右，要不会出错
                 while l < r and arr[r] >= pivot: r -= 1
                 while l < r and arr[l] <= pivot: l += 1
                 arr[l], arr[r] = arr[r], arr[l]
