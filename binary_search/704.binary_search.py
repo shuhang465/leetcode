@@ -11,3 +11,4 @@ class Solution:
             else:
                 right = mid - 1
         return -1
+    #写的时候想一下终止条件
