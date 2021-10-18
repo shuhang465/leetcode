@@ -5,7 +5,7 @@ class Solution:
         #因为是升序排列的，所以按照函数图像，平方最大值肯定处在函数的两侧
         n = len(nums)
         ans = [0] * n
-        #这里加了一个pos变量，不断的为pos位置赋值，就是不断的通过比较左右两端的大小
+        #这里加了一个pos变量，不断的为pos位置赋值，就是不断的通过比较左右两端的大小,同时更新三个值
         left , right , pos = 0, n-1, n-1
         while left <= right:
             if nums[left] * nums[left] > nums[right] * nums[right]:
