@@ -2,6 +2,7 @@
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
         left ,right = 0, len(numbers) - 1
+        #两数之和，要有两个数，终止条件是左等于右这样就只有一个数了
         while left < right:
             if numbers[left] + numbers[right]  == target:
                 return [left + 1, right + 1]
