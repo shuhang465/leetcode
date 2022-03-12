@@ -17,6 +17,7 @@ class Solution:
         from collections import deque
         queue = deque()
         # 将根节点入队
+        #不管干啥，首先把root放到队列里，然后再对队列里的值进行pop
         queue.append(root)
         # 队列不为空，表达式二叉树还有节点，循环遍历
         while queue:
