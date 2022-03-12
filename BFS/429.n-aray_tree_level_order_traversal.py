@@ -18,14 +18,14 @@ class Solution:
         while queue:
             size = len(queue)
             tmp = []
-            for _ in range(size):
+            for i in range(size):
                 node = queue.popleft()
                 tmp.append(node.val)
                 #只有这里和二叉树不一样，而且是extend，如果用append的话就会【1，2，3【4，5，6】】这样
+                #node的children是一个列表，所以不用对children进行while操作直接if就行
                 if node.children:
+                    #因为queue本来就是一个列表，所以往里面加children的时候，要extend
                     queue.extend(node.children)
-                
             res.append(tmp)
         return res
-
 
