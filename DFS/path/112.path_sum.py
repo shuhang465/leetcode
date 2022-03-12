@@ -20,4 +20,5 @@ class Solution(object):
         if not root.left and not root.right:
             return sum == root.val
         #递归左右，sum一直在递归减少
+        #类内调用自己的成员函数必须加self
         return self.hasPathSum(root.left, sum - root.val) or self.hasPathSum(root.right, sum - root.val)
