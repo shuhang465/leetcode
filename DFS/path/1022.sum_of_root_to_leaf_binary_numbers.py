@@ -23,6 +23,7 @@ class Solution:
                     dfs(node.right, path)
         paths = []
         dfs(root, '')
+        #注意，dfs什么也没有返回，最后只是path的值发生了变化，所以后面要比较path
         print(paths)
         res = 0
         for s in paths:
