@@ -11,8 +11,8 @@ class Solution(object):
                     dfs(node.left)
                 if node.val < R:
                     dfs(node.right)
-
-        self.ans = 0
+        #这里ans使用的是局部变量，paths那里使用的是全局变量，而且不用return
+        ans = 0
         dfs(root)
-        return self.ans
+        return ans
 
