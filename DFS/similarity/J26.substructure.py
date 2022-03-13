@@ -10,23 +10,22 @@
 #         self.left = None
 #         self.right = None
 
-class Solution(object):
-    def isSubStructure(self, A, B):
-        if not A or not B:
-            return False
-        return self.judge(A, B) or self.isSubStructure(A.left, B) or self.isSubStructure(A.right, B)
-
-    def judge(self, A, B):
-        if not B:
-            # b都遍历完了，还没发现不一样的，说明那就一样了
+class Solution:
+    def isSubStructure(self, A: TreeNode, B: TreeNode) -> bool:
+        if not A and not B:
             return True
-        if not A:
-            # 压根就没有a，当然不行
+        elif not A or not B:
             return False
-        if A.val!= B.val:
-            # a b 的值不相等，肯定不行
+        return self.isSameTree(A,B) or self.isSubStructure(A.left,B) or self.isSubStructure(A.right,B)
+    def isSameTree(self, A,B):
+        #最后终止条件是B便利完了就可以，不用AB所有值都相等，只要B所有节点在内相等就行，放宽一下条件
+        if not B:
+            return True
+        elif not A or not B:
             return False
-        return self.judge(A.left,B.left) and self.judge(A.right, B.right)
+        elif A.val != B.val:
+            return False
+        return self.isSameTree(A.left, B.left) and self.isSameTree(A.right, B.right)
 
 
     
