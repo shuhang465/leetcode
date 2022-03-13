@@ -11,6 +11,7 @@ class Solution(object):
         res2 = []
         self.dfs(root1, res1)
         self.dfs(root2, res2)
+        #dfs并没有返回值，而是res的值发生了变化，所以最后比较的是res
         if res1 == res2:
             return True
         return False
