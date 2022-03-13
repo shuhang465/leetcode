@@ -5,14 +5,41 @@
 #         self.left = None
 #         self.right = None
 # 计算给定二叉树的所有左叶子之和。
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+#bfs和dfs都可以
 class Solution:
     def sumOfLeftLeaves(self, root: TreeNode) -> int:
-        #判断是否为叶子结点
-        def leafnode(root):
-            if not root.left and not root.right:
-                return True
-            return False
-        #深度优先遍历
+        if not root:
+            return []
+        res = 0
+        from collections import deque
+        queue = deque()
+        queue.append(root)
+        isLeafNode = lambda node: not node.left and not node.right
+        while queue:
+            size = len(queue)
+            for i in range(size):
+                node = queue.popleft()
+                if node.left:
+                    if isLeafNode(node.left):
+                        res += node.left.val
+                    else:
+                        queue.append(node.left)
+                if node.right:
+                    if not isLeafNode(node.right):
+                        queue.append(node.right)
+        return res
+
+
+class Solution:
+    def sumOfLeftLeaves(self, root: TreeNode) -> int:
+        leafnode = lambda node: not node.left and not node.right 
         def dfs(root):
             if not root:
                 return 0
@@ -35,7 +62,5 @@ class Solution:
             return ans
         return dfs(root)
                 
-
-
-
+        
 
